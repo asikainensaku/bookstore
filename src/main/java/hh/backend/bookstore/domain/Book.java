@@ -54,6 +54,10 @@ public class Book {
         this.price = price;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -72,6 +76,10 @@ public class Book {
 
     public double getPrice() {
         return price;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     @Override
