@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books</title>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 
 <body>
     <h1>Books</h1>
 
-    <table>
+    <table class="table table-striped">
         <tr>
             <th>Author</th>
             <th>Title</th>
@@ -26,12 +27,12 @@
             <td th:text="${book.publicationYear}"></td>
             <td th:text="${book.price}"></td>
             <td>
-                <a th:href="@{/delete/{id}(id=${book.id})}">Delete</a>
-                <a th:href="@{/edit/{id}(id=${book.id})}">Edit</a>
+                <a class="btn btn-danger" th:href="@{/delete/{id}(id=${book.id})}">Delete</a>
+                <a class="btn btn-warning" th:href="@{/edit/{id}(id=${book.id})}">Edit</a>
             </td>
         </tr>
     </table>
-    <a th:href="@{/add}">Add Book</a>
+    <a class="btn btn-success" th:href="@{/add}">Add Book</a>
 
 </body>
 
