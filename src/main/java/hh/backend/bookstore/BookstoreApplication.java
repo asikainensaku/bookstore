@@ -44,6 +44,10 @@ public class BookstoreApplication {
 
 			categoryRepository.save(
 					new Category("Comedy"));
+
+			System.out.println("Categories:");
+
 		};
 	}
+
 }
