@@ -4,6 +4,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import hh.backend.bookstore.domain.Category;
+import hh.backend.bookstore.domain.CategoryRepository;
 
 import hh.backend.bookstore.domain.Book;
 import hh.backend.bookstore.domain.BookRepository;
@@ -16,7 +18,7 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository repository) {
+	public CommandLineRunner demo(BookRepository repository, CategoryRepository categoryRepository) {
 		return (args) -> {
 
 			repository.save(
@@ -30,6 +32,18 @@ public class BookstoreApplication {
 
 			repository.save(
 					new Book("Koodarin käsikirja", "Tiina Tietokanta", 2023, "4444444-45", 29.90));
+
+			repository.save(
+					new Book("Suuri nörttien vitsikirja", "Veikko Vitsi", 2025, "5555555-56", 32.70));
+
+			categoryRepository.save(
+					new Category("Programming"));
+
+			categoryRepository.save(
+					new Category("Technology"));
+
+			categoryRepository.save(
+					new Category("Comedy"));
 		};
 	}
 }
