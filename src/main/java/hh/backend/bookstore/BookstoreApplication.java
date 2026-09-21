@@ -21,33 +21,37 @@ public class BookstoreApplication {
 	public CommandLineRunner demo(BookRepository repository, CategoryRepository categoryRepository) {
 		return (args) -> {
 
-			repository.save(
-					new Book("Hei me koodataan!", "Kalle Koodaaja", 2010, "1111111-12", 23.10));
+			// luodaan kategoriat
+			Category programming = new Category("Programming");
+			Category technology = new Category("Technology");
+			Category comedy = new Category("Comedy");
+
+			// tässä kategoriat tallennetaan
+			categoryRepository.save(programming);
+			categoryRepository.save(technology);
+			categoryRepository.save(comedy);
 
 			repository.save(
-					new Book("Javaa javattomille", "Jaakko Javailija", 2015, "2222222-23", 19.90));
+					new Book("Hei me koodataan!", "Kalle Koodaaja", 2010, "1111111-12", 23.10, programming));
 
 			repository.save(
-					new Book("Bugit kuriin", "Pekka Ohjelmoija", 2020, "3333333-34", 25.50));
+					new Book("Javaa javattomille", "Jaakko Javailija", 2015, "2222222-23", 19.90, programming));
 
 			repository.save(
-					new Book("Koodarin käsikirja", "Tiina Tietokanta", 2023, "4444444-45", 29.90));
+					new Book("Bugit kuriin", "Pekka Ohjelmoija", 2020, "3333333-34", 25.50, technology));
 
 			repository.save(
-					new Book("Suuri nörttien vitsikirja", "Veikko Vitsi", 2025, "5555555-56", 32.70));
+					new Book("Koodarin käsikirja", "Tiina Tietokanta", 2023, "4444444-45", 29.90, technology));
 
-			categoryRepository.save(
-					new Category("Programming"));
+			repository.save(
+					new Book("Suuri nörttien vitsikirja", "Veikko Vitsi", 2025, "5555555-56", 32.70, comedy));
 
-			categoryRepository.save(
-					new Category("Technology"));
-
-			categoryRepository.save(
-					new Category("Comedy"));
-
+			// Tulostetaan kategoriat terminaaliin
 			System.out.println("Categories:");
 
+			for (Category category : categoryRepository.findAll()) {
+				System.out.println(category);
+			}
 		};
 	}
-
 }
