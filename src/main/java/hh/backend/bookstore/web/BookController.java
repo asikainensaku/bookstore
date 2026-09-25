@@ -1,13 +1,10 @@
 package hh.backend.bookstore.web;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import hh.backend.bookstore.domain.Book;
 
@@ -59,15 +56,5 @@ public class BookController {
     public String editBook(@PathVariable("id") Long bookId, Model model) {
         model.addAttribute("book", bookRepository.findById(bookId).get());
         return "editbook";
-    }
-
-    @GetMapping("/books")
-    public @ResponseBody List<Book> bookListRest() {
-        return (List<Book>) bookRepository.findAll();
-    }
-
-    @GetMapping("/books/{id}")
-    public @ResponseBody Book findBookRest(@PathVariable("id") Long bookId) {
-        return bookRepository.findById(bookId).get();
     }
 }
