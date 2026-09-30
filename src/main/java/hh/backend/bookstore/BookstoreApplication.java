@@ -46,6 +46,13 @@ public class BookstoreApplication {
 			repository.save(
 					new Book("Suuri nörttien vitsikirja", "Veikko Vitsi", 2025, "5555555-56", 32.70, comedy));
 
+			// Tulostetaan kirjat terminaaliin
+			System.out.println("Books:");
+
+			for (Book book : repository.findAll()) {
+				System.out.println(book);
+			}
+
 			// Tulostetaan kategoriat terminaaliin
 			System.out.println("Categories:");
 
