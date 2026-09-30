@@ -1,5 +1,8 @@
 package hh.backend.bookstore.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -40,19 +43,22 @@ public class WebSecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-
-        UserDetails user = User.withDefaultPasswordEncoder()
+        UserDetails user = User.builder()
                 .username("user")
-                .password("password")
+                .password(passwordEncoder().encode("password"))
                 .roles("USER")
                 .build();
 
-        UserDetails admin = User.withDefaultPasswordEncoder()
+        UserDetails admin = User.builder()
                 .username("admin")
-                .password("admin")
+                .password(passwordEncoder().encode("admin"))
                 .roles("ADMIN")
                 .build();
 
-        return new InMemoryUserDetailsManager(user, admin);
+        List<UserDetails> users = new ArrayList();
+        users.add(user);
+        users.add(admin);
+
+        return new InMemoryUserDetailsManager(users);
     }
 }
