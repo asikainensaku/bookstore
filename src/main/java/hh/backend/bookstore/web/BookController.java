@@ -57,4 +57,9 @@ public class BookController {
         model.addAttribute("book", bookRepository.findById(bookId).get());
         return "editbook";
     }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 }
