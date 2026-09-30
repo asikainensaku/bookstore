@@ -55,7 +55,7 @@ public class WebSecurityConfig {
                 .roles("ADMIN")
                 .build();
 
-        List<UserDetails> users = new ArrayList();
+        List<UserDetails> users = new ArrayList<UserDetails>();
         users.add(user);
         users.add(admin);
 
