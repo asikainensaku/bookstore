@@ -4,8 +4,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
 import hh.backend.bookstore.domain.Category;
 import hh.backend.bookstore.domain.CategoryRepository;
+
+import hh.backend.bookstore.domain.User;
+import hh.backend.bookstore.domain.UserRepository;
 
 import hh.backend.bookstore.domain.Book;
 import hh.backend.bookstore.domain.BookRepository;
@@ -18,7 +22,8 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository repository, CategoryRepository categoryRepository) {
+	public CommandLineRunner demo(BookRepository repository, CategoryRepository categoryRepository,
+			UserRepository userRepository) {
 		return (args) -> {
 
 			// luodaan kategoriat
