@@ -10,6 +10,7 @@ import hh.backend.bookstore.domain.CategoryRepository;
 
 import hh.backend.bookstore.domain.User;
 import hh.backend.bookstore.domain.UserRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import hh.backend.bookstore.domain.Book;
 import hh.backend.bookstore.domain.BookRepository;
@@ -23,13 +24,29 @@ public class BookstoreApplication {
 
 	@Bean
 	public CommandLineRunner demo(BookRepository repository, CategoryRepository categoryRepository,
-			UserRepository userRepository) {
+			UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
 		return (args) -> {
 
 			// luodaan kategoriat
 			Category programming = new Category("Programming");
 			Category technology = new Category("Technology");
 			Category comedy = new Category("Comedy");
+
+			// luodaan käyttäjät
+			User user = new User(
+					"user",
+					passwordEncoder.encode("password"),
+					"user@example.com",
+					"USER");
+
+			User admin = new User(
+					"admin",
+					passwordEncoder.encode("admin"),
+					"admin@example.com",
+					"ADMIN");
+
+			userRepository.save(user);
+			userRepository.save(admin);
 
 			// tässä kategoriat tallennetaan
 			categoryRepository.save(programming);
