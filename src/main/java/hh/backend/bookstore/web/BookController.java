@@ -43,6 +43,11 @@ public class BookController {
 
     @PostMapping("/save")
     public String saveBook(Book book) {
+        if (book.getCategory() != null) {
+            book.setCategory(
+                    categoryRepository.findById(book.getCategory().getCategoryid()).get());
+        }
+
         bookRepository.save(book);
         return "redirect:/booklist";
     }
