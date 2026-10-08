@@ -32,41 +32,43 @@ public class BookstoreApplication {
 			Category technology = new Category("Technology");
 			Category comedy = new Category("Comedy");
 
-			// luodaan käyttäjät
-			User user = new User(
-					"user",
-					passwordEncoder.encode("password"),
-					"user@example.com",
-					"USER");
+			if (userRepository.count() == 0) {
+				User user = new User(
+						"user",
+						passwordEncoder.encode("password"),
+						"user@example.com",
+						"USER");
 
-			User admin = new User(
-					"admin",
-					passwordEncoder.encode("admin"),
-					"admin@example.com",
-					"ADMIN");
+				User admin = new User(
+						"admin",
+						passwordEncoder.encode("admin"),
+						"admin@example.com",
+						"ADMIN");
 
-			userRepository.save(user);
-			userRepository.save(admin);
+				userRepository.save(user);
+				userRepository.save(admin);
+			}
 
-			// tässä kategoriat tallennetaan
-			categoryRepository.save(programming);
-			categoryRepository.save(technology);
-			categoryRepository.save(comedy);
+			if (categoryRepository.count() == 0) {
+				categoryRepository.save(programming);
+				categoryRepository.save(technology);
+				categoryRepository.save(comedy);
 
-			repository.save(
-					new Book("Hei me koodataan!", "Kalle Koodaaja", 2010, "1111111-12", 23.10, programming));
+				repository.save(
+						new Book("Hei me koodataan!", "Kalle Koodaaja", 2010, "1111111-12", 23.10, programming));
 
-			repository.save(
-					new Book("Javaa javattomille", "Jaakko Javailija", 2015, "2222222-23", 19.90, programming));
+				repository.save(
+						new Book("Javaa javattomille", "Jaakko Javailija", 2015, "2222222-23", 19.90, programming));
 
-			repository.save(
-					new Book("Bugit kuriin", "Pekka Ohjelmoija", 2020, "3333333-34", 25.50, technology));
+				repository.save(
+						new Book("Bugit kuriin", "Pekka Ohjelmoija", 2020, "3333333-34", 25.50, technology));
 
-			repository.save(
-					new Book("Koodarin käsikirja", "Tiina Tietokanta", 2023, "4444444-45", 29.90, technology));
+				repository.save(
+						new Book("Koodarin käsikirja", "Tiina Tietokanta", 2023, "4444444-45", 29.90, technology));
 
-			repository.save(
-					new Book("Suuri nörttien vitsikirja", "Veikko Vitsi", 2025, "5555555-56", 32.70, comedy));
+				repository.save(
+						new Book("Suuri nörttien vitsikirja", "Veikko Vitsi", 2025, "5555555-56", 32.70, comedy));
+			}
 
 			// Tulostetaan kirjat terminaaliin
 			System.out.println("Books:");
